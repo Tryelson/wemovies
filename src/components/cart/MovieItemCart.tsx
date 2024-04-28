@@ -9,6 +9,7 @@ import Span from "../tags/Span";
 import Image from "../tags/Image";
 import { MovieContext, MovieInfo } from "@/context/cart";
 import { useContext, useState } from "react";
+import Flex from "../tags/Flex";
 
 interface MovieItemCartProps {
     item: MovieInfo;
@@ -35,24 +36,24 @@ export default function MovieItemCart({ item }: MovieItemCartProps){
 
     return (
         <Li className={`${classAnimation ? 'fadeIn' : 'fadeOut'}`}>
-            <Div customStyles={{display: 'flex', width: '100%', gap: '1rem', justifyContent: 'space-between'}}>
+            <Flex customStyles={{width: '100%', gap: '1rem', justifyContent: 'space-between'}}>
                 <Image src={item.movie.image} alt={item.movie.title} width={64} height={82} />
                 
-                <Div customStyles={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%'}}>
-                    <Div customStyles={{display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', gap: '5px'}}>
+                <Flex customStyles={{flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start', width: '100%'}}>
+                    <Flex customStyles={{justifyContent: 'space-between', width: '100%', alignItems: 'center', gap: '5px'}}>
                         <Span customStyles={{fontWeight: '700', fontSize: '0.875rem', color: 'black'}}>{item.movie.title}</Span>
 
-                        <Div customStyles={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                        <Flex customStyles={{alignItems: 'center', gap: '1rem'}}>
                             <Span customStyles={{fontWeight: '700', fontSize: '0.875rem', color: 'black'}}>{priceFormatter(item.movie.price)}</Span>
 
                             <Button variant='secondary' onClick={() => onRemoveItem(item)}>
                                 <TrashIcon />
                             </Button>
-                        </Div>
-                    </Div>
+                        </Flex>
+                    </Flex>
 
-                    <Div customStyles={{width: '100%', display: 'flex', justifyContent: 'space-between', gap: '5px'}}>
-                        <Div customStyles={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', gap: '0.5rem' }}>
+                    <Flex customStyles={{width: '100%', justifyContent: 'space-between', gap: '5px'}}>
+                        <Flex customStyles={{justifyContent: 'flex-start', alignItems: 'center', gap: '0.5rem' }}>
                             <Button variant="secondary" customStyles={{padding: '0'}} onClick={() => decreaseQuantity(item)} disabled={item.quantity == 1}>
                                 <RemoveQuantity />
                             </Button>
@@ -64,15 +65,15 @@ export default function MovieItemCart({ item }: MovieItemCartProps){
                             <Button variant="secondary" customStyles={{padding: '0'}} onClick={() => increaseQuantity(item)}>
                                 <AddQuantity />
                             </Button>
-                        </Div>
+                        </Flex>
 
-                        <Div customStyles={{display: 'flex', flexDirection: 'column'}}>
+                        <Flex customStyles={{flexDirection: 'column'}}>
                             <Span customStyles={{fontWeight: 'bold', color: '#999999'}}>SubTotal</Span>
                             <Span customStyles={{color: 'black', fontWeight: 'bold'}}>{ getPriceItem(item) }</Span>
-                        </Div>
-                    </Div>
-                </Div>
-            </Div>
+                        </Flex>
+                    </Flex>
+                </Flex>
+            </Flex>
         </Li>
     )
 }

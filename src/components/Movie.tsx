@@ -5,9 +5,9 @@ import Card from "./Card";
 import { priceFormatter } from "../utils/priceFormatter";
 import { useContext } from "react";
 import { MovieContext } from "../context/cart";
-import Div from "./tags/Div";
 import { MovieType } from "@/app/api/movies.interface";
 import AddCart from "../../public/AddCart";
+import Flex from "./tags/Flex";
 
 interface MovieProps{
     movie: MovieType;
@@ -39,10 +39,10 @@ export default function Movie({ movie }: MovieProps){
             <Span customStyles={{color: 'black', fontWeight: '700', fontSize: '1rem'}}>{ priceFormatter(movie.price) }</Span>
 
             <Button onClick={addMovieToCart} customStyles={{textTransform: 'uppercase', maxWidth: '100%', fontWeight: 700, display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', backgroundColor: hasMovieIntoCart() ? '#039B00' : ''}}>
-                <Div customStyles={{width: 'fit-content', display: 'flex', gap: '3px'}}>
+                <Flex customStyles={{width: 'fit-content', gap: '3px'}}>
                     <AddCart />
                     {getTotalMovies()} 
-                </Div>
+                </Flex>
 
                 Adicionar ao carrinho
             </Button>

@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import MovieItemCart from "./MovieItemCart"
 import Button from "../tags/Button"
-import Div from "../tags/Div"
 import Line from "../tags/Line"
 import Span from "../tags/Span"
 import Ul from "../tags/Ul"
 import { MovieContext } from "@/context/cart"
 import { priceFormatter } from "@/utils/priceFormatter"
+import Flex from "../tags/Flex"
 
 interface MobileCartAreaProps {
     handleIsOrderCompleted: () => void;
@@ -32,7 +32,7 @@ export default function MobileCartArea({ handleIsOrderCompleted }: MobileCartAre
     }
 
     return (
-        <Div customStyles={{width: '100%', display: 'flex', flexDirection: 'column', gap: '24px'}}>
+        <Flex customStyles={{width: '100%', flexDirection: 'column', gap: '24px'}}>
             <Ul customStyles={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
                 {movies.map((item) => {
                     return (
@@ -47,14 +47,14 @@ export default function MobileCartArea({ handleIsOrderCompleted }: MobileCartAre
 
             <Line />
 
-            <Div customStyles={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
-                <Div customStyles={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+            <Flex customStyles={{flexDirection: 'column', justifyContent: 'space-between', width: '100%'}}>
+                <Flex customStyles={{justifyContent: 'space-between', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
                     <Span customStyles={{textTransform: 'uppercase', fontWeight: '700'}}>Total</Span>
                     <Span customStyles={{color: 'black', fontSize: '1.5rem', fontWeight: '700'}}>{ getTotalPrice() }</Span>
-                </Div>
+                </Flex>
 
                 <Button customStyles={{textDecoration: 'uppercase', maxWidth: '100%'}} disabled={movies.length == 0} onClick={handleCompleteOrder}>Finalizar Pedido</Button>
-            </Div>
-        </Div>
+            </Flex>
+        </Flex>
     )
 }

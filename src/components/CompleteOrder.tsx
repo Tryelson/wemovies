@@ -1,17 +1,21 @@
 'use client'
 
 import Button from "./tags/Button"
-import Div from "./tags/Div"
-import H2 from "./tags/H2"
 import Line from "./tags/Line"
 import Image from "next/image"
-import Link from "./tags/Link"
 import Span from "./tags/Span"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import Flex from "./tags/Flex"
 
 export default function CompleteOrder(){
 
+    const router = useRouter()
     const [windowWidth, setWindowWidth] = useState<number>(0);
+
+    function goBack(){
+        router.push('/')
+    }
 
     useEffect(() => {
         function handleResize() {
@@ -25,20 +29,22 @@ export default function CompleteOrder(){
     }, []); 
 
     return (
-        <Div customStyles={{backgroundColor: 'white', width: '100%', height: '100%', borderRadius: '4px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: `${windowWidth <= 480 ? '64px 16px' : '64px 16px 143px'}`, paddingInline: '1rem'}} className="fadeIn">
-            <Div customStyles={{width: '100%', display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center'}}>
+        <Flex customStyles={{backgroundColor: 'white', width: '100%', height: '100%', borderRadius: '4px', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: `${windowWidth <= 480 ? '64px 16px' : '64px 16px 143px'}`, paddingInline: '1rem'}} className="fadeIn">
+            <Flex customStyles={{width: '100%', flexDirection: 'column', gap: '24px', alignItems: 'center'}}>
                 <Span customStyles={{fontSize: '1.25rem', fontWeight: 'bold', textAlign: 'center', color: 'black'}}>Compra Realizada com sucesso!</Span>
 
-                <Image style={{width: '100%', maxWidth: '294px'}} src={'/success-img.png'} alt="Página está vazia!" width={294} height={307} priority />
+                {windowWidth >= 480 ? (
+                    <Image src={'/success-img.png'} alt="Página está vazia!" width={294} height={307} priority />
+                ) : (
+                    <Image src={'/success-img.png'} alt="Página está vazia!" width={238} height={247} priority />
+                )}
                 
                 <Line customStyles={{margin: '0 auto', maxWidth: '447px'}} />
-            </Div>
+            </Flex>
 
-            <Button customStyles={{marginTop: '24px', textTransform: 'uppercase', fontWeight: '700'}}>
-                <Link href="/">
-                    Voltar
-                </Link>
+            <Button customStyles={{marginTop: '24px', textTransform: 'uppercase', fontWeight: '700'}} onClick={goBack}>
+                Voltar
             </Button>
-        </Div>
+        </Flex>
     )
 }
