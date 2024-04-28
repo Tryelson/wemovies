@@ -1,5 +1,4 @@
 import Button from "../tags/Button"
-import Div from "../tags/Div"
 import Line from "../tags/Line"
 import Table from "../tags/Table"
 import TableRow from "./TableRow"
@@ -8,6 +7,7 @@ import { MovieContext } from "@/context/cart"
 import { priceFormatter } from "@/utils/priceFormatter"
 import Span from "../tags/Span"
 import Td from "../tags/Td"
+import Flex from "../tags/Flex"
 
 interface DesktopCartAreaProps {
     handleIsOrderCompleted: () => void;
@@ -60,14 +60,14 @@ export default function DesktopCartArea({ handleIsOrderCompleted }: DesktopCartA
 
             <Line />
             
-            <Div customStyles={{display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '24px'}}>
+            <Flex customStyles={{justifyContent: 'space-between', width: '100%', marginTop: '24px'}}>
                 <Button customStyles={{textDecoration: 'uppercase'}} disabled={movies.length == 0} onClick={handleCompleteOrder}>Finalizar Pedido</Button>
 
-                <Div customStyles={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                <Flex customStyles={{alignItems: 'center', gap: '1rem'}}>
                     <Span customStyles={{textTransform: 'uppercase', fontWeight: '700'}}>Total</Span>
                     <Span customStyles={{color: 'black', fontSize: '1.5rem', fontWeight: '700'}}>{ getTotalPrice() }</Span>
-                </Div>
-            </Div>
+                </Flex>
+            </Flex>
         </>
     )
 }

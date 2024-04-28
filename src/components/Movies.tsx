@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react"
 import Spinner from "./Spinner"
 import EmptyPage from "./EmptyPage"
-import Div from "./tags/Div"
 import Movie from "./Movie"
 import useMovies from "@/app/api/useMovies"
 import { MovieType } from "@/app/api/movies.interface"
+import Flex from "./tags/Flex"
 
 export default function Movies(){
 
@@ -32,7 +32,7 @@ export default function Movies(){
             {!isLoading && movies.length == 0 && (<EmptyPage />)}
 
             {!isLoading && movies.length > 0 && (
-                <Div customStyles={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '24px 16px'}}>
+                <Flex customStyles={{justifyContent: 'center', flexWrap: 'wrap', gap: '24px 16px'}}>
                     {movies.map((movie) => {
                         return (
                             <Movie
@@ -41,7 +41,7 @@ export default function Movies(){
                             />
                         )
                     })}
-                </Div>
+                </Flex>
             )}
         </>
     )
